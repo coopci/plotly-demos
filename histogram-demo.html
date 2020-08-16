@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="plotly-latest.min.js"></script>
+
+</head>
+<body onload="init();">
+
+<div id="myDiv"></div>
+
+
+<script>
+    function init(){
+    console.log("sd");
+
+var x = [];
+var y = [];
+for (var i = 0; i < 50; i ++) {
+    x[i] = "str " +i;
+    y[i] = Math.random() * 100;
+}
+
+//var x = ["Apples","Oranges", "Oranges", "Bananas"]
+//var y = [5,10,17,5]
+
+var trace = {
+    histfunc: "sum", // 这个是关键，
+                    // 如果不写，好像默认是count(和y的数据没关系)，于是 最终显示结果y轴都是1。
+    x: x,
+    y: y,
+    autobinx: false,
+    //autobiny: false,
+  marker: {
+      width: 1,
+      //gap:1
+  },
+  xbins: {
+   // end: 49,
+    size: 1,
+   // start: 0
+  },
+    type: 'histogram',
+  };
+var data = [trace];
+Plotly.newPlot('myDiv', data);
+}
+
+</script>
+
+
+</body>
+</html>
